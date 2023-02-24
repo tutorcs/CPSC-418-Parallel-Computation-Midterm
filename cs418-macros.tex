@@ -1,0 +1,132 @@
+\usepackage{soul,color}
+
+% colors for stuff
+\definecolor{CodeColor}{rgb}{0,0.0,0.7}
+\definecolor{CommentColor}{rgb}{0.6,0.0,0.6}
+\definecolor{OutColor}{rgb}{0.0,0.0,0.0}
+\definecolor{URLcolor}{rgb}{0.0,0.3,0.8}
+\definecolor{URLdarkcolor}{rgb}{0.0,0.0,0.6}
+\definecolor{ErrorColor}{rgb}{1.0,0.0,0.0}
+\definecolor{SymColor}{rgb}{0.0,0.5,0.0}
+\definecolor{LightGray}{gray}{0.7}
+\definecolor{LightBlue}{rgb}{0.7,0.7,1.0}
+\definecolor{LightRed}{rgb}{1.0,0.7,0.7}
+\definecolor{LightGreen}{rgb}{0.5,1.0,0.5}
+\definecolor{LightMagenta}{rgb}{1.0,0.5,1.0}
+\definecolor{MediumRed}{rgb}{0.8,0.0,0.0}
+\definecolor{MediumGreen}{rgb}{0.0,0.7,0.0}
+\definecolor{MediumMagenta}{rgb}{0.7,0.0,0.7}
+\definecolor{DarkMagenta}{rgb}{0.5,0.0,0.5}
+\definecolor{DarkGreen}{rgb}{0.0,0.5,0.0}
+\definecolor{DarkRed}{rgb}{0.6,0.0,0.0}
+\definecolor{DarkBlue}{rgb}{0.0,0.0,0.7}
+\definecolor{anscolor}{rgb}{0.0,0.4,0.2} % for solution sets
+\definecolor{red}{rgb}{0.8,0.0,0.0}
+\definecolor{teal}{rgb}{0.0,0.65,0.88}
+
+% formatting source code
+\newcommand{\code}[1]{\texttt{\color{CodeColor}#1}}
+\newcommand{\smallcode}[1]{\small\texttt{\color{CodeColor}#1}}
+\newcommand{\footcode}[1]{\footnotesize\texttt{\color{CodeColor}#1}}
+\newcommand{\scriptcode}[1]{\scriptsize\texttt{\color{CodeColor}#1}}
+\newcommand{\tinycode}[1]{\tiny\texttt{\color{CodeColor}#1}}
+\newcommand{\codetabs}{xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=}
+\newenvironment{xcode}{%
+  \tt\color{CodeColor}\begin{tabbing}\codetabs\+\kill}{\end{tabbing}}
+\newenvironment{pcode}{% pseudo-code
+  \rm\color{CodeColor}\begin{tabbing}\codetabs\+\kill}{\end{tabbing}}
+\newenvironment{SmallCode}{% code typeset \small
+  \tt\small\color{CodeColor}\begin{tabbing}\codetabs\+\kill}{\end{tabbing}}
+\newenvironment{FootCode}{% code typeset \footnotesize
+  \tt\footnotesize\color{CodeColor}\begin{tabbing}\codetabs\+\kill}{\end{tabbing}}
+\newenvironment{ScriptCode}{% code typeset scriptsize
+  \tt\scriptsize\color{CodeColor}\begin{tabbing}\codetabs\+\kill}{\end{tabbing}}
+\newenvironment{TinyCode}{% code typeset \tiny
+  \tt\tiny\color{CodeColor}\begin{tabbing}\codetabs\+\kill}{\end{tabbing}}
+\newcommand{\xcomment}[1]{{\color{CommentColor}\% \textrm{#1}}}
+\newcommand{\ycomment}[2]{{\color{CommentColor}\% #1\textrm{: #2}}}
+\newcommand{\ccomment}[1]{{\color{CommentColor}// \textrm{#1}}}
+\newcommand{\xout}[1]{{\color{OutColor}#1}}
+\newcommand{\xerr}[1]{{\color{ErrorColor}#1}}
+\newcommand{\xsym}[1]{{\color{SymColor}\it#1}}
+\newcommand{\msym}[1]{{\color{SymColor}\ensuremath{#1}}}
+\newcommand{\tuple}[1]{\{#1\}}
+\newcommand{\uscore}{\ensuremath{\underline{\phantom{x}}}}
+\newcommand{\hs}{\rule{0.2em}{0ex}}
+
+% the Erlang prompt:
+\newcounter{erlprompt}
+\renewcommand{\theerlprompt}{\arabic{erlprompt}}
+\newcommand{\ereset}{\setcounter{erlprompt}{0}}
+\newcommand{\estart}{\ereset%
+  \xout{Erlang/OTP 20 [erts-9.0] [source] \ldots}\\%
+  \xout{Eshell V9.0  (abort with $\wedge$G)}\rule{0em}{3ex}\\}
+\newcommand{\epromptx}{\eprompt{}\addtocounter{erlprompt}{-1}}
+\newcommand{\eprompt}{\refstepcounter{erlprompt}\theerlprompt>}
+
+% more Erlang stuff
+\newcommand{\erlist}[1]{[#1]}
+\newcommand{\erlangdoc}[2]{\hrefc{http://erlang.org/doc/man/erlang.html\##1-#2}{#1}}
+\newcommand{\listdoc}[2]{\hrefc{http://erlang.org/doc/man/lists.html\##1-#2}{lists:#1}}
+\newcommand{\iodoc}[2]{\hrefc{http://erlang.org/doc/man/io.html\##1-#2}{lists:#1}}
+\newcommand{\addpath}{\hrefc{http://erlang.org/doc/man/code.html\#add_path-1}{code:add\_path}}
+\newcommand{\timeitt}{\hrefc{https://www.students.cs.ubc.ca/~cs-418/resources/erl/doc/time_it.html\#t-1}time\_it:t/1}
+\newcommand{\misc}[2]{\hrefc{https://www.students.cs.ubc.ca/~cs-418/resources/erl/doc/misc.html\##1-#2}{misc:#1}}
+
+
+% other handy stuff
+\newcommand{\hide}[1]{}
+\newcommand{\ttilde}{\texttildelow}
+
+\newcommand{\cudadev}{\code{\_\_device\_\_}}
+\newcommand{\cudaglob}{\code{\_\_global\_\_}}
+\newcommand{\cudashared}{\code{\_\_shared\_\_}}
+
+% coloring links
+\usepackage{hyperref}
+\newcommand{\hrefc}[2]{{\color{URLcolor}\textsf{\href{#1}{\underline{#2}}}}}
+\newcommand{\hyperlinkc}[2]{{\hyperlink{#1}{\color{URLcolor}\textsf{\underline{#2}}}}}
+\newcommand{\hyperlinkcd}[2]{{\hyperlink{#1}{\color{URLdarkcolor}\textsf{\underline{#2}}}}}
+\newcommand{\hyperlinkcc}[2]{{\hyperlink{#1}{\code{\color{URLcolor}\underline{#2}}}}}
+\newcommand{\urlc}[1]{{\color{URLcolor}\underline{\textsf{\url{#1}}}}}
+\newcommand{\hyperslide}[1]{\hyperlinkc{#1}{slide \ref{#1}}}
+\newcommand{\ccite}[1]{{\color{URLcolor}\cite{#1}}}
+
+\newcommand{\bigO}{\mathcal{O}}
+
+% copyright notice
+\newcommand{\mrgcopyright}{%
+  \vfill
+  \begin{columns}
+  \column{0.15\textwidth}
+  \raggedleft
+  \href{http://creativecommons.org/licenses/by/4.0/}{\includegraphics[width=0.5\textwidth]{cc-by}}\\
+  \column{0.85\textwidth}
+  \tiny
+  Unless otherwise noted or cited, these slides are copyright 2020 by Mark Greenstreet and are\\
+  made available under the terms of the Creative Commons Attribution 4.0 International license\\
+  \url{http://creativecommons.org/licenses/by/4.0/}
+  \end{columns}
+}
+
+% Peril-L stuff
+\newcommand{\ctaglobal}[1]{\ul{\code{#1}}}
+
+% links to Erlang documentation
+\newcommand{\erldoc}[2]{\hrefc{http://erlang.org/doc/man/#1}{\texttt{#2}}}
+\newcommand{\bifdoc}[2]{\hrefc{http://erlang.org/doc/man/erlang.html\##1-#2}{\texttt{#1}}}
+\newcommand{\listsdoc}[2]{\hrefc{http://erlang.org/doc/man/lists.html\##1-#2}{\texttt{#1}}}
+\newcommand{\miscdoc}[2]{\hrefc{http://www.ugrad.cs.ubc.ca/~cs418/resources/erl/doc/misc.html\##1-#2}{\texttt{misc:#1}}}
+\newcommand{\timeitdoc}[2]{\hrefc{http://www.ugrad.cs.ubc.ca/~cs418/resources/erl/doc/time\_it.html\##1-#2}{\texttt{time\_it:#1}}}
+\newcommand{\workersdoc}[2]{\hrefc{http://www.ugrad.cs.ubc.ca/~cs418/resources/erl/doc/workers.html\##1-#2}{\texttt{workers:#1}}}
+\newcommand{\wtreedoc}[2]{\hrefc{http://www.ugrad.cs.ubc.ca/~cs418/resources/erl/doc/wtree.html\##1-#2}{\texttt{wtree:#1}}}
+
+
+% other handy stuff
+\newcommand{\squote}{\textquotesingle}
+\newcommand{\mrgemph}[1]{{\color{DarkMagenta}\textbf{#1}}}
+\newcommand{\lyse}{\hrefc{http://learnyousomeerlang.com}{\textit{Learn You Some Erlang}}}
+\newcommand{\LYSE}{\hrefc{http://learnyousomeerlang.com}{\textit{LYSE}}}
+\newcommand{\pacheco}{\hrefc{http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=10297705}{\textit{Intro. to Parallel Computing (Pacheco)}}}
+
+
